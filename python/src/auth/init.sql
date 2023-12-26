@@ -2,7 +2,7 @@ CREATE USER 'auth_user'@'localhost' IDENTIFIED BY 'Aauth123';
 
 CREATE DATABASE auth;
 
-GRANT ALL PRIVILEGES ON auth.* TO 'auth_user'@'locahost';
+GRANT ALL PRIVILEGES ON auth.* TO 'auth_user'@'localhost';
 
 USE auth;
 

@@ -1,18 +1,5 @@
-#Scripts
+#python -m venv venv
 
-python/src/auth/venv/Scripts/
-
-
-#include 
-
-python/src/auth/venv/Include/
+python/src/auth/venv/
 
 
-#Lib/site-packages
-
-python/src/auth/venv/Lib/site-packages/
-
-
-#pyvenv.cfg
-
-python/src/auth/venv/pyvenv.cfg
