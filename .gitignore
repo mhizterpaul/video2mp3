@@ -2,4 +2,8 @@
 
 python/src/auth/venv/
 
+#secret 
+
+python/src/auth/manifests/secret.yaml
+
 
