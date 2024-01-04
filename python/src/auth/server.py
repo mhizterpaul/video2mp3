@@ -35,6 +35,7 @@ def login():
     else:
         return 'invalid credentials', 401
 
+
 def createJWT(username, secret, authz):
     return jwt.encode(
         {
@@ -46,6 +47,7 @@ def createJWT(username, secret, authz):
         secret,
         algorithm='HS256')
 
+
 @server.route('/validate', methods=['POST'])
 def validate():
     token = request.headers.get('Authorization')
@@ -53,10 +55,11 @@ def validate():
         return 'missing credentials', 401
     
     token = token.split(' ')[1]
+
     try:
         decoded = jwt.decode(token, os.environ.get('JWT_SECRET'), algorithms=['HS256'])
     except:
-        return 'token authorized', 403
+        return 'not authorized', 403
     
     return decoded, 200
 

@@ -1,9 +1,10 @@
 #python -m venv venv
 
-python/src/auth/venv/
+*/**/venv/
 
-#secret 
+#secret file
 
-python/src/auth/manifests/secret.yaml
+*/**/secret.yaml
+
 
 
