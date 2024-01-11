@@ -1,26 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gateway
+  name: converter
   labels:
-    app: gateway
+    app: converter
 spec:
-  replicas: 2
+  replicas: 4
   selector:
     matchLabels:
-      app: gateway
+      app: converter
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 3
+      maxSurge: 8
   template:
     metadata:
       labels:
-        app: gateway
+        app: converter
     spec:
       containers:
-      - name: gateway
-        image: mhizterpaul/gateway
+      - name: converter
+        image: mhizterpaul/converter
         resources:
           requests:
             memory: "128Mi"
@@ -29,7 +29,7 @@ spec:
             memory: "256Mi"
             cpu: "500m"
         envFrom:
-          - configMapRef:
-              name: gateway-config
-          - secretRef:
-              name: gateway-secret
+        - configMapRef:
+            name: converter-configmap
+        - secretRef:
+            name: converter-secret
