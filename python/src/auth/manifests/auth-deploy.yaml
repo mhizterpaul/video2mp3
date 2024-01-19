@@ -22,12 +22,12 @@ spec:
         - name: auth
           image: mhizterpaul/auth
           resources:
-          requests:
-            memory: "128Mi"
-            cpu: "250m"
-          limits:
-            memory: "256Mi"
-            cpu: "500m"
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
           ports:
             - containerPort: 5000
           envFrom:
@@ -35,4 +35,3 @@ spec:
                 name: auth-configmap
             - secretRef:
                 name: auth-secret
-

@@ -7,7 +7,6 @@ spec:
     matchLabels:
       app: rabbitmq
   serviceName: 'not-applicable'
-  replicas: 2
   template:
     metadata:
       labels:
