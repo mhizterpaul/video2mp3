@@ -1,31 +1,29 @@
 video to mp3 conversion service
 
-This project tries to create an application that uses the microservice architecture
+This application demonstrates using the microservice architecture to manage a complex system by breaking the application(usually monolithic) into various components
 
-it uses Docker, rabbitmq, kubernetes, mysql, mongodb, minikube, 
-and k9s for developing, managing and running the application
+It uses Docker, rabbitmq, kubernetes, mysql, mongodb, minikube(optional),  
+and k9s(optional) for developing, managing and running the application
 
-there are 5 services that make up this application
+There are 5 services that make up this application
 
-if you are going to run this application on a windows(10) pc like me
-then we might have the same development experience
+1 The Authentication Service
+2 The Gateway Service
+3 The Conversion Service
+4 The Notification Service
+5 The Message-brocker Service
 
-you might get some benign errors while trying to using minikube 
+If you are going to run this application on a windows machine using Docker Desktop for Windows  
+you might run into issues getting minikube to tunnel requests to your kubernetes service/deployment. Here is a link to a related [problem](https://github.com/kantancoding/microservices-python/issues/18)  
 
-like this: Unable to resolve the current Docker CLI context "default": context "default" does not exist
-and this: failed to close the audit log: invalid argument
+To get started customizing this application:
 
-and minikube tunnel prompting for password which requires configuring ssh keys
-like below
-icacls c:\\Users\\user\\.minikube\\machines\\minikube\\id_rsa /inheritance:r
-icacls c:\\Users\\user\\.minikube\\machines\\minikube\\id_rsa /grant:r "%username%:(R)"
-ssh-add c:\Users\user\.minikube\machines\minikube\id_rsa
+Install the softwares listed above.
+Cd into each child directory of the src directory and make an image, tag the build and push it to a registry.
+cd into their manifest directory
+update their deployment specification by editing the *-deploy.yaml file, find the image attribute and replace it with the correct registry
+apply the various templates available to kubernetes to get the app running.
 
-I'm currently facing problems actually getting the tunnel service to run
-after enabling ingress addon in minikube 
-like so:
-minikube addons enable ingress
-all pods and service required to access to the rabbitmq management console are running but I do not
-see any active http process listening at port 8080 for the auth service or even at 15672 on localhost
+Refer to the video in the description for more information on how to use this application.
 
-https://github.com/kantancoding/microservices-python/issues/18
+Feel free to modify this software to meet your requirements.

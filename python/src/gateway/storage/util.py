@@ -4,25 +4,27 @@ import pika, json
 def upload(f, fs, channel, access):
     try:
         fid = fs.put(f)
-    except Exception:
-        return 'internal server error', 500
+    except Exception as err:
+        print(err)
+        return str(err), 500
     
     message = {
         'video_id': str(fid),
         'mp3_id': None,
-        'username': access['username'],
+        'username': access['user'],
 
     }
 
     try:
-        channel.basic.publish(
+        channel.publish(
             exchange='',
             routing_key='video',
             body=json.dumps(message),
             properties=pika.BasicProperties(
-                delivery_mode=pika.spec.spec.PERSISTENT_DELIVERY_MODE,
+                delivery_mode=pika.spec.PERSISTENT_DELIVERY_MODE
             )
         )
-    except Exception:
+    except Exception as err:
+        print(err)
         fs.delete(fid)
-        return 'internal server error', 500
+        return str(err), 500
