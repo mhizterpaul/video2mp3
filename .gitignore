@@ -2,9 +2,8 @@
 
 */**/venv/
 
-#secret file
+#test file
 
-*/**/secret.yaml
 */**/*.mp4
 
 

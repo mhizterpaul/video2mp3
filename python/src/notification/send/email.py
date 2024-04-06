@@ -1,5 +1,5 @@
-import smtplib, os, json
-from email.message import
+import smtplib, os  
+from email.message import EmailMessage 
 
 def notification(message):
     try:
@@ -7,18 +7,18 @@ def notification(message):
         mp3_id = message['mp3_id']
         sender_address = os.environ.get('GMAIL_ADDRESS')
         sender_password = os.environ.get('GMAIL_PASSWORD')
-        reciever_addresss = message['username']
+        receiver_address = message['username']
 
         msg = EmailMessage()
         msg.set_content(f'mp3 file_id: {mp3_id} is now ready!')
         msg['Subject'] = 'MP3 Download'
         msg['From'] = sender_address
-        msg['To'] = reciever_address
+        msg['To'] = receiver_address
 
         session = smtplib.SMTP('smtp.gmail.com', 587)
         session.starttls()
         session.login(sender_address, sender_password)
-        session.send_message(msg, sender_address, reciever_address) 
+        session.send_message(msg, sender_address, receiver_address) 
         session.quit()
         print('Mail Sent')
     except Exception as e:
